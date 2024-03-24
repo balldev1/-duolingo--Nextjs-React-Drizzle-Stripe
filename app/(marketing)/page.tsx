@@ -15,7 +15,7 @@ export default function Home(){
                 text-neutral-600 max-w-[480px] text-center'>
                     Learn, practice, and master new languages with Lingo.
                 </h1>
-                <div>
+                <div className='flex flex-col items-center gap-y-3 max-w-[330px] w-full'>
                     <ClerkLoading>
                         <Loader className='h-5 w-5 text-muted-foreground animate-spin'/>
                     </ClerkLoading>
@@ -42,6 +42,7 @@ export default function Home(){
                                 </Button>
                             </SignInButton>
                         </SignedOut>
+
                         <SignedIn>
                             <Button size='lg' variant='secondary'
                             className='w-full' asChild
