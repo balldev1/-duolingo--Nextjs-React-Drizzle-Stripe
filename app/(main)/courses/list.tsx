@@ -16,15 +16,16 @@ export const List = ({courses, activeCourseId}:Props) => {
     const [pending, startTransition] = useTransition();
 
     const onClick = (id: number) => {
-    if(pending) return;
+        if (pending) return;
 
-    if (id === activeCourseId) {
-        return router.push('/learn');
+        if (id === activeCourseId) {
+            return router.push('/learn');
+        }
+
+        // startTransition(() => {
+        //    // ## 2.50
+        // });
     }
-
-        startTransition(() => {
-           // ## 2.50
-        });
 
     return(
         <div className='pt-6 grid grid-cols-2
