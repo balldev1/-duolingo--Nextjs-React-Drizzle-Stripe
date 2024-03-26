@@ -5,20 +5,23 @@ import {eq} from "drizzle-orm";
 import {courses, userProgress} from "@/db/schema";
 
 // get user
-export const getUserProgress = cache(async()=>{
+export const getUserProgress = cache(async () => {
     const { userId } = await auth();
 
-    if (!userId){
+    if (!userId) {
         return null;
     }
 
     const data = await db.query.userProgress.findFirst({
-        where: eq(userProgress.userId,userId),
-        with:{
+        where: eq(userProgress.userId, userId),
+        with: {
             activeCourse: true,
         },
     });
-})
+
+    return data;
+});
+
 
 // get courses
 export const getCourses = cache(async () => {
