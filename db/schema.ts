@@ -8,13 +8,13 @@ export const courses = pgTable("courses",{
     imageSrc: text("image_src").notNull(),
 });
 
-// ความสัมพันธ์ระหว่างตาราง Courses
+//  Courses มี userProgress , units เป็นลูกอีกที่ในข้อมูล
 export const coursesRelations = relations(courses, ({ many }) => ({
     userProgress: many(userProgress),
     units: many(units),
 }));
 
-// unit
+// unit ว่า courses นั้นมีอะไรบ้าง เช่น สเปนมี่ courses อะไรบ้าง
 export const units = pgTable("units",{
     id: serial("id").primaryKey(),
     title: text("title").notNull(),
@@ -23,7 +23,7 @@ export const units = pgTable("units",{
     order: integer("order").notNull(),
 });
 
-// Relation.Unit
+// Unit มี field ที่อยู่ใน courses อีกที อ้างอิง courses.id
 export const unitsRelations = relations(units, ({ many, one }) => ({
     course: one(courses, {
         fields: [units.courseId],

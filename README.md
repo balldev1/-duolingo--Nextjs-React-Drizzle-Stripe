@@ -2,7 +2,7 @@ https://dashboard.clerk.com
 
 https://ui.shadcn.com/
 
-# 2.50
+# 3.47
 https://www.youtube.com/watch?v=dP75Khfy4s4&t=1197s 
 
 https://console.neon.tech/app/projects/flat-lake-82802144
