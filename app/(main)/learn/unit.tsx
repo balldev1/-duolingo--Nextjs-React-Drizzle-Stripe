@@ -1,6 +1,7 @@
-import { lessons,units } from "@/db/schema";
-import {UnitBanner} from "@/app/(main)/learn/unit-banner";
-import {LessonButton} from "@/app/(main)/learn/lesson-button";
+import { lessons, units } from "@/db/schema"
+
+import { UnitBanner } from "./unit-banner";
+import { LessonButton } from "./lesson-button";
 
 type Props = {
     id: number;
@@ -16,28 +17,36 @@ type Props = {
     activeLessonPercentage: number;
 };
 
-export const Unit = ({id,order,title,description,lessons,activeLesson,activeLessonPercentage}:Props) => {
+export const Unit = ({
+                         id,
+                         order,
+                         title,
+                         description,
+                         lessons,
+                         activeLesson,
+                         activeLessonPercentage,
+                     }: Props) => {
     return (
         <>
-            <UnitBanner title={title} description={description}/>
-            <div className='flex items-center flex-col relative'>
-                {lessons.map((lesson,index)=>{
-                    const  isCurrent = lesson.id === activeLesson?.id;
+            <UnitBanner title={title} description={description} />
+            <div className="flex items-center flex-col relative">
+                {lessons.map((lesson, index) => {
+                    const isCurrent = lesson.id === activeLesson?.id;
                     const isLocked = !lesson.completed && !isCurrent;
 
                     return (
                         <LessonButton
-                        key={lesson.id}
-                        id={lesson.id}
-                        index={index}
-                        totalCount={lessons.length - 1}
-                        current={ true || isCurrent}
-                        locked={isLocked}
-                        percentage={activeLessonPercentage}
+                            key={lesson.id}
+                            id={lesson.id}
+                            index={index}
+                            totalCount={lessons.length - 1}
+                            current={isCurrent}
+                            locked={isLocked}
+                            percentage={activeLessonPercentage}
                         />
-                    )
+                    );
                 })}
             </div>
         </>
-    )
-}
+    );
+};
