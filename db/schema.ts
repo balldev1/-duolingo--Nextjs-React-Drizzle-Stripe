@@ -50,18 +50,16 @@ export const lessonsRelations = relations(lessons, ({ one, many }) => ({
 }));
 
 // enum
-export const challengesEnum = pgEnum("type",["SELECT","ASSIST"]);
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]);
 
-// challenges && use.enum
-export const challenges = pgTable("lessons", {
+export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
-    lessonId: integer("lesson_id").references(()=>lessons.id,{onDelete:"cascade"}).notNull(),
+    lessonId: integer("lesson_id").references(() => lessons.id, { onDelete: "cascade" }).notNull(),
     type: challengesEnum("type").notNull(),
     question: text("question").notNull(),
     order: integer("order").notNull(),
 });
 
-// Relations.challenges
 export const challengesRelations = relations(challenges, ({ one, many }) => ({
     lesson: one(lessons, {
         fields: [challenges.lessonId],
